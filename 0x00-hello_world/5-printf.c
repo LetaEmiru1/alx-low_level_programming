@@ -1,6 +1,8 @@
-#include <stdio.h>
-/*
-*main is an entry point. It always returns zero.
+#include<stdio.h>
+/**
+* main - Entry point
+*
+* Return: Always 0 (Success)
 */
 int main(void)
 {
