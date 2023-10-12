@@ -12,3 +12,11 @@ int _isupper(int c)
 	}
 	return 0;
 }
+
+int main()
+{
+	int c;
+	int_isupper(c);
+	
+	return 0;
+}
