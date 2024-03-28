@@ -3,7 +3,7 @@
 CC = gcc 
 all: school
 
-SRC = $(wildcard *.o)
+SRC = $(wildcard *.c)
 
 school: $(SRC) 
 	$(CC) $(SRC) -o school
