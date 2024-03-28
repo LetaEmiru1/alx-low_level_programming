@@ -1,14 +1,7 @@
 CC = gcc
 SRC = main.c school.c
-OBJ = main.o school.o 
-NAME := school
-all: make_object make_exec clean 
+OBJ = $(SRC:.c=.o) 
+NAME = school
 
-make_object: $(OBJ)
-	$(CC) -c $(OBJ) -o main.o school.o
-
-make_exec: $(OBJ)
+all: $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
-
-clean:
-	rm *.o
