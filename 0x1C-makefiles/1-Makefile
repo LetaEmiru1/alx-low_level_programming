@@ -7,6 +7,5 @@ all: school
 SRC = *.c
 
 school: $(SRC) 
-
 	$(CC) $(SRC) -o school
 
