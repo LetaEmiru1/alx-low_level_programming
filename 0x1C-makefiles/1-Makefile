@@ -1,9 +1,5 @@
-#_*_Makefile_*_
-
-CC = gcc 
-
-SRC = main.c shool.c 
-
-all: $(SRC) 
+CC = gcc
+SRC = main.c school.c
+all: $(SRC)
 	$(CC) $(SRC) -o school
 
