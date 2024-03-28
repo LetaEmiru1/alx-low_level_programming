@@ -4,7 +4,7 @@ CC = gcc
 
 all: school
 
-SRC = *.c
+SRC = main.c shool.c 
 
 school: $(SRC) 
 	$(CC) $(SRC) -o school
