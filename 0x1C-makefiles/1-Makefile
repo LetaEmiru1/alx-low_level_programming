@@ -1,9 +1,9 @@
 #_*_Makefile_*_
 
-CC = GCC
+CC = gcc 
 all: school
 
-SRC = {*.o} 
+SRC = ${*.o} 
 
 school: $(SRC) 
 	$(CC) $(SRC) -o school
