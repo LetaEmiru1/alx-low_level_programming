@@ -7,11 +7,11 @@ RM = m.h
 all: $(OBJ)
 	$(CC) $(OBJ) -o school
 clean: 
-	rm *~
+	rm -f *~
 oclean:
 	rm *.o
 fclean:
-	rm *~ school *.o
+	rm  -f *~ school *.o
 re: $(OBJ)
 	$(CC) -M $(OBJ) -o school
 
