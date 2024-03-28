@@ -1,0 +1,17 @@
+CC = gcc
+SRC = main.c school.c
+OBJ = $(SRC:.c=.o)
+NAME = school
+RM = remove_files
+
+all: $(OBJ)
+	$(CC) $(OBJ) -o school
+clean: 
+	rm *~
+oclean:
+	rm *.o
+fclean:
+	rm *~ school *.o
+re: $(OBJ)
+	$(CC) -M $(OBJ) -o school
+
