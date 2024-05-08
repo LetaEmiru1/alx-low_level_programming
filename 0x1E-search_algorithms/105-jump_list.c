@@ -1,57 +1,51 @@
 #include "search_algos.h"
+#include <math.h>
 
 /**
- * print_block - Prints the block where a possible value could be
- * @prev: Pointer to the start node of the block
- * @current: Pointer to the end node of the block or NULL
- */
-void print_block(listint_t *prev, listint_t *current)
-{
-    printf("Value found between indexes [%lu] and [%lu]\n",
-           prev->index, current ? current->index : (prev->index + 1));
-    while (prev != current->next && prev)
-    {
-        printf("Value checked at index [%lu] = [%d]\n", prev->index, prev->n);
-        prev = prev->next;
-    }
-}
-
-/**
- * jump_list - Searches for a value in a sorted list of integers using Jump search algorithm
- * @list: Pointer to the head of the list to search in
- * @size: Number of nodes in the list
- * @value: Value to search for
- * Return: Pointer to the first node where value is located, or NULL if not present or list is NULL
+ * jump_list - search for a value in an array of
+ * integers
+ *
+ * @list: input list
+ * @size: size of the array
+ * @value: value to search in
+ * Return: index of the number
  */
 listint_t *jump_list(listint_t *list, size_t size, int value)
 {
-    if (!list)
-        return (NULL);
+	size_t index, k, m;
+	listint_t *prev;
 
-    size_t step = (size_t) sqrt(size);
-    listint_t *prev = list;
-    listint_t *current = list;
+	if (list == NULL || size == 0)
+		return (NULL);
 
-    /* Move in steps of 'step' until finding the block where value could be or reaching the end of the list */
-    while (current && current->n < value)
-    {
-        prev = current;
-        for (size_t i = 0; i < step && current->next; i++)
-            current = current->next;
+	m = (size_t)sqrt((double)size);
+	index = 0;
+	k = 0;
 
-        printf("Value checked at index [%lu] = [%d]\n", current->index, current->n);
-    }
+	do {
+		prev = list;
+		k++;
+		index = k * m;
 
-    /* Perform a linear search in the block identified */
-    print_block(prev, current);
+		while (list->next && list->index < index)
+			list = list->next;
 
-    while (prev != current->next && prev)
-    {
-        if (prev->n == value)
-            return (prev);
-        prev = prev->next;
-    }
+		if (list->next == NULL && index != list->index)
+			index = list->index;
 
-    return (NULL);  /* If value not found */
+		printf("Value checked at index [%d] = [%d]\n", (int)index, list->n);
+
+	} while (index < size && list->next && list->n < value);
+
+	printf("Value found between indexes ");
+	printf("[%d] and [%d]\n", (int)prev->index, (int)list->index);
+
+	for (; prev && prev->index <= list->index; prev = prev->next)
+	{
+		printf("Value checked at index [%d] = [%d]\n", (int)prev->index, prev->n);
+		if (prev->n == value)
+			return (prev);
+	}
+
+	return (NULL);
 }
-
